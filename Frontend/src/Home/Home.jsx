@@ -1,12 +1,21 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import Hero from './Hero'
+import Testimonials from './Testimonials'
+import Pricing from './Pricing'
+import Faqs from './Faqs'
+import Subscription from './Subscription'
+import Footer from '../components/Footer'
 const Home = () => {
   return (
     <>
         <Navbar />
-        <h1 className='text-3xl font-bold underline'>
-            Hello world!
-        </h1>
+        <Hero />
+        <Testimonials />
+        <Pricing />
+        <Faqs />
+        <Subscription />
+        <Footer />
     </>
   )
 }
