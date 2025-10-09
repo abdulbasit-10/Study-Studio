@@ -1,23 +1,21 @@
 import React from "react";
 import { CheckSquare, BookOpen, UserCheck, Clock } from "lucide-react";
-import backgroundImg from "../assets/Container.png"; // <-- import your image
+import backgroundImg from "../assets/Container.png"; // ensure this path & filename are correct
 
 export default function Hero() {
-
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Background image with gradient overlay */}
-      <div
-        className="absolute inset-0 -z-10 bg-no-repeat bg-top bg-cover"
-        style={{
-          backgroundImage: `url(${backgroundImg})`,
-          // optional: tweak position/size if needed
-          backgroundPosition: "center top",
-        }}
-        aria-hidden="true"
-      />
+      {/* Background image (DOM <img> so bundler resolves path reliably) */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <img
+          src={backgroundImg}
+          alt=""
+          className="w-full h-[420px] md:h-[520px] lg:h-[620px] object-cover"
+          style={{ objectPosition: "center top" }}
+        />
+      </div>
 
-      {/* Gradient fade at bottom of image to white */}
+      {/* Gradient fade at bottom of image to white (sits above image, behind content) */}
       <div
         className="absolute inset-x-0 top-0 -z-5 pointer-events-none"
         style={{
@@ -46,8 +44,7 @@ export default function Hero() {
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
             <span className="block">
-              Study
-              <span className="text-emerald-600">Studio</span>
+              Study<span className="text-emerald-600">Studio</span>
             </span>
           </h1>
 
