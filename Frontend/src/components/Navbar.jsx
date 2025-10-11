@@ -1,5 +1,9 @@
+// src/components/Navbar.jsx
 import React, { useState } from "react";
 import { BookOpen, ArrowRight, Menu, X } from "lucide-react";
+import logoUrl from "../assets/logo.svg";
+import profileUrl from "../assets/profile.svg";
+import documentationUrl from "../assets/Documentation.svg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -11,12 +15,8 @@ export default function Navbar() {
           {/* Left: Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center gap-3">
-              {/* Put your logo at public/logo.png or change path */}
-              <img
-                src="./src/assets/logo.svg"
-                alt="Study Studio"
-                className="h-15 w-50"
-              />
+              {/* using imported logo URL so it works with Vite */}
+              <img src={logoUrl} alt="Study Studio" className="h-15 w-auto ml-10" />
             </a>
           </div>
 
@@ -24,9 +24,9 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center">
             <a
               href="/documentation"
-              className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition"
+              className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition"
             >
-              <BookOpen size={18} />
+              <img src={documentationUrl} alt="Documentation" className="w-4 h-4" />
               <span>Documentation</span>
             </a>
 
@@ -35,8 +35,10 @@ export default function Navbar() {
 
             <a
               href="/get-started"
-              className="inline-flex items-center gap-2 text-gray-700 text-sm font-medium px-4 py-2 transition"
+              className="inline-flex items-center gap-2 text-gray-500 text-sm font-medium px-4 py-2 transition hover:text-gray-900"
             >
+              {/* using profile.svg as an <img> (imported URL) */}
+              <img src={profileUrl} alt="Profile icon" className="w-4 h-4" />
               <span>Get Started</span>
             </a>
           </nav>
@@ -69,6 +71,7 @@ export default function Navbar() {
             href="/get-started"
             className="flex items-center gap-2 text-gray-700 px-2 py-2 rounded hover:bg-gray-50"
           >
+            <img src={profileUrl} alt="Profile icon" className="w-4 h-4" />
             <span>Get Started</span>
             <ArrowRight size={14} />
           </a>
