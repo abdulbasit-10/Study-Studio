@@ -3,8 +3,16 @@ import React from "react";
 const SubscribeSection = () => {
   return (
     <section className="w-full bg-white py-20 text-center">
-      <h2 className="text-4xl font-bold text-gray-900 mb-2">
-        Subscribe <span className="text-green-600">Now</span>
+      <h2 className="text-5xl font-bold text-[#39424F] mb-2">
+        Subscribe <span
+            className="bg-clip-text text-transparent bg-gradient-to-r"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg,#2C8651 0%,#449665 60%,#2C8651 100%)",
+            }}
+          >
+            Now
+          </span>
       </h2>
       <p className="text-gray-500 mb-8">
         Subscribe to our newsletter and start making the most of every engagement.

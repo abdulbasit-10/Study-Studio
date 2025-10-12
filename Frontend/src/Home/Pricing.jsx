@@ -5,8 +5,16 @@ const PricingSection = () => {
     <section className="w-full bg-white py-16 flex flex-col items-center">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900">
-          Our <span className="text-green-600">Pricing</span>
+        <h2 className="text-5xl font-bold text-[#39424F]">
+          Our  <span
+            className="bg-clip-text text-transparent bg-gradient-to-r"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg,#2C8651 0%,#449665 60%,#2C8651 100%)",
+            }}
+          >
+            Pricing
+          </span>
         </h2>
         <p className="text-gray-500 mt-2 max-w-md mx-auto">
           Whatever your status, our offers evolve according to your needs.

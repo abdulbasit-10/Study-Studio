@@ -1,19 +1,19 @@
 import React from "react";
 import { CheckSquare, BookOpen, UserCheck, Clock, ArrowRight } from "lucide-react";
-import backgroundImg from "../assets/Container.png"; // ensure this path & filename are correct
+// import backgroundImg from "../assets/Container.png";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-white pt-20 md:pt-20">
       {/* Background image */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+      {/* <div className="absolute inset-0 -z-10 pointer-events-none">
         <img
           src={backgroundImg}
           alt=""
           className="w-full h-[420px] md:h-[520px] lg:h-[620px] object-cover"
           style={{ objectPosition: "center top" }}
         />
-      </div>
+      </div> */}
 
       {/* Gradient overlay */}
       <div
@@ -43,7 +43,7 @@ export default function Hero() {
 
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-gray-900">
-            <span className="block">
+            <span className="block text-[#39424F]">
               Study<span className="text-green-700">Studio</span>
             </span>
           </h1>
@@ -62,8 +62,8 @@ export default function Hero() {
                 inline-flex items-center gap-3 
                 bg-gradient-to-r from-green-950 to-green-400 
                 hover:from-green-700 hover:to-green-600 
-                text-white font-semibold 
-                px-8 py-3 rounded-md 
+                text-white text-sm font-semibold
+                px-4 py-2 rounded-md 
                 shadow-md hover:shadow-lg 
                 transition-all duration-300
               "
@@ -107,7 +107,7 @@ export default function Hero() {
 /* Feature card */
 function Feature({ icon, title, desc }) {
   return (
-    <div className="flex flex-col items-start gap-4 p-4 md:p-6 text-left">
+    <div className="flex flex-col items-start p-4 md:p-6 text-left cursor-pointer hover:bg-gray-100 rounded-lg transition">
       <div className="p-3 rounded-lg bg-emerald-50 inline-flex items-center justify-center">
         {icon}
       </div>

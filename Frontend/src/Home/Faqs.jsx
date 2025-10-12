@@ -40,8 +40,16 @@ const FAQSection = () => {
     <section className="w-full bg-white py-20 flex flex-col md:flex-row justify-center gap-16">
       {/* Left side text */}
       <div className="md:w-1/3 px-6">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">
-          FAQ<span className="text-green-600">S</span>
+        <h2 className="text-5xl font-bold text-[#39424F] mb-2">
+          FAQ<span
+            className="bg-clip-text text-transparent bg-gradient-to-r"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg,#2C8651 0%,#449665 60%,#2C8651 100%)",
+            }}
+          >
+            s
+          </span>
         </h2>
         <p className="text-gray-500">
           Answers to the most frequently asked questions.
