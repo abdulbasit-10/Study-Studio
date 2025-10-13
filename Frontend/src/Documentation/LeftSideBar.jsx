@@ -55,7 +55,7 @@ function SidebarLink({ to, children, external }) {
 export default function DocumentationSidebar() {
   return (
     <aside className="w-64 min-h-screen border-r border-gray-100 bg-white px-3 py-4">
-      <div className="mb-3">
+      <div className="mb-10">
         <h2 className="text-sm font-semibold text-gray-700">Documentation</h2>
       </div>
 
@@ -118,3 +118,4 @@ export default function DocumentationSidebar() {
     </aside>
   );
 }
+

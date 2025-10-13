@@ -6,7 +6,7 @@ export default function RightSideBar() {
   const items = [
     { to: "#quick-start", label: "Quick Start" },
     { to: "#faqs", label: "StudyStudio FAQs" },
-  ];
+  ];  
 
   return (
     <aside className="sticky top-24 bg-white p-4 border border-gray-100 rounded-md shadow-sm">

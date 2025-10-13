@@ -27,12 +27,6 @@ export default function Navbar() {
               >
                 Home
               </a>
-              {/* <a
-                href="/documentation"
-                className="text-sm text-gray-600 hover:text-gray-900 transition"
-              >
-                Documentation
-              </a> */}
             </nav>
 
             {/* Search input */}
@@ -50,16 +44,6 @@ export default function Navbar() {
                 CTRL K
               </div>
             </div>
-
-            {/* Get started / profile (desktop) */}
-            {/* <div className="hidden md:flex items-center gap-4">
-              <a
-                href="/get-started"
-                className="text-sm text-gray-700 hover:text-gray-900 px-3 py-1 rounded-md transition"
-              >
-                Get Started
-              </a>
-            </div> */}
 
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -112,3 +96,4 @@ export default function Navbar() {
     </header>
   );
 }
+
