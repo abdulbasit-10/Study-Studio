@@ -5,25 +5,8 @@ import backgroundImg from "../assets/Container.png";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden pt-20 md:pt-20" style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: 'contain', backgroundPosition: '0px -5px', backgroundRepeat: 'no-repeat'}}>
-      {/* Background image */}
-      {/* <div className="absolute inset-0 -z-10 pointer-events-none">
-        <img
-          src={backgroundImg}
-          alt=""
-          className="w-full h-[420px] md:h-[520px] lg:h-[620px] object-cover"
-          style={{ objectPosition: "center top" }}
-        />
-      </div> */}
-
-      {/* Gradient overlay */}
-      {/* <div
-        className="absolute inset-x-0 top-0 -z-5 pointer-events-none"
-        style={{
-          height: "420px",
-          background:
-            "linear-gradient(to bottom, rgba(238,247,239,0.95) 20%, rgba(238,247,239,0.7) 50%, rgba(255,255,255,0) 85%)",
-        }}
-      /> */}
+      
+      {/* https://raw.githubusercontent.com/Sharjeel-Riaz/SaaS-Assets/2df3536eeea9a33f3515f7c623aae3defb1aba86/verdant/forest.svg */}
 
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,7 +58,7 @@ export default function Hero() {
         </div>
 
         {/* Features area */}
-        <div className="pb-16 md:pb-24">
+        <div className="pb-16 md:pb-24 mt-30">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <Feature
               icon={<CheckSquare className="w-6 h-6 text-emerald-600" />}
@@ -109,7 +92,7 @@ function Feature({ icon, title, desc }) {
   return (
     <div
       className="group flex flex-col items-start p-4 md:p-6 text-left cursor-pointer 
-                 hover:bg-gray-100 rounded-lg transition"
+                 hover:bg-gray-50 rounded-lg transition"
     >
       <div className="p-3 rounded-lg bg-emerald-50 inline-flex items-center justify-center">
         {icon}
