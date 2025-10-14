@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, User, RefreshCw, MessageSquare } from "lucide-react";
-
+import PreviewImage from '../assets/1.webp'
 export default function App() {
   return (
     <div className="min-h-screen bg-white text-gray-800 flex flex-col">
@@ -65,7 +65,7 @@ export default function App() {
             </p>
 
             <img
-              src="https://studystudio.vercel.app/preview.png"
+              src={PreviewImage}
               alt="StudyStudio preview"
               className="rounded-xl border border-green-300 mx-auto shadow-md"
             />
