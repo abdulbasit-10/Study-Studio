@@ -9,7 +9,7 @@ export default function RightSideBar() {
   ];  
 
   return (
-    <aside className="sticky top-24 bg-white p-4 border border-gray-100 rounded-md shadow-sm">
+    <aside className="fixed top-24 bg-white p-4">
       <h3 className="text-sm font-semibold text-gray-800 mb-3">On This Page</h3>
       <nav className="space-y-2">
         {items.map((item) => (

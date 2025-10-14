@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import PreviewImage from '../assets/1.webp'
 
 export default function App() {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -37,54 +38,41 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-      {/* Header */}
-      <header className="border-b bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Study<span className="text-green-600">Studio</span>
-          </h1>
-          <nav className="space-x-6 text-gray-600">
-            <a href="#quickstart" className="hover:text-green-600">
-              Quick Start
-            </a>
-            <a href="#faq" className="hover:text-green-600">
-              FAQs
-            </a>
-          </nav>
-        </div>
-      </header>
 
+      {/* Documentation Content */}
+        <main className="flex-1 pt-1 px-3 max-w-4xl mx-auto">
+          <p className="text-sm text-gray-500 mb-4">
+            Documentation &gt; <span className="text-gray-700 font-medium">Introduction</span>
+          </p>
+    </main>
       {/* Introduction */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold mb-4">Introducing StudyStudio</h2>
+      <section className="max-w-6xl mx-auto px-2 py-3">
+        <h2 className="text-3xl font-bold mb-4">StudyStudio</h2>
         <p className="text-gray-700 leading-relaxed">
-          Introducing <strong>StudyStudio</strong>, an educational SaaS platform
-          powered by Gemini that lets students and parents create personalized AI tutors
-          for any subject. With StudyStudio, say goodbye to high tutoring costs and hello
-          to flexible, on-demand learning. This intuitive platform makes it easy to tailor
-          AI tutors to specific coursework needs, allowing users to chat and learn at their
-          own pace.
-        </p>
-        <p className="text-gray-700 leading-relaxed mt-3">
-          Built with Next.js, React, and Gemini, StudyStudio is your ultimate tool to
-          transform tutoring — making education accessible, customizable, and affordable.
+          Introducing <strong>StudyStudio</strong>, an educational SaaS platform powered by Gemini that lets students
+          and parents create personalized AI tutors for any subject. With StudyStudio, say goodbye to high tutoring 
+          costs and hello to flexible, on-demand learning. This intuitive platform makes it easy to tailor AI tutors 
+          to specific coursework needs, allowing users to chat and learn at their own pace. Built with Next.js, React, 
+          and Gemini StudyStudio is your ultimate tool to transform tutoring, making education accessible, customizable, 
+          and affordable.
         </p>
 
-        <img
-          src="https://studystudio.vercel.app/preview.png"
+          <img
+          src={PreviewImage}
           alt="StudyStudio preview"
-          className="mt-8 rounded-xl shadow-lg border"
+          className="mt-8 rounded-xl shadow-lg"
         />
-        <p className="text-sm text-gray-500 text-center mt-2">
+
+        <p className="text-sm text-gray-500 text-center mt-10">
           The landing page of StudyStudio.
         </p>
       </section>
 
       {/* Quick Start */}
-      <section id="quickstart" className="bg-gray-50 border-t py-12">
+      <section id="quickstart" className="bg-gray-50 py-12">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-6">Quick Start</h2>
-          <p className="text-gray-700 mb-8">
+          <p className="text-gray-700 mb-8 border-t">
             To start using StudyStudio, you need to select an environment first:
           </p>
 
