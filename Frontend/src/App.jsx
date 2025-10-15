@@ -2,10 +2,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Home/Home";
-import Documentation from "./Documentation/Documentation";
-import Intro from "./Documentation/Intro";
-import HowItWorks from "./Documentation/HowItWorks";
-import BuyingGuide from "./Documentation/BuyingGuide";
+import Documentation from "./Pages/Documentation";
+import Intro from "./Pages/Intro";
+import HowItWorks from "./Pages/HowItWorks";
+import BuyingGuide from "./Pages/BuyingGuide";
+import LocalEnvironment from "./Pages/LocalEnvironment";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route index element={<Intro />} />
           <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="buying-guide" element={<BuyingGuide />} />
+          <Route path="local" element={<LocalEnvironment />} />
           {/* add more nested doc routes here */}
         </Route>
 

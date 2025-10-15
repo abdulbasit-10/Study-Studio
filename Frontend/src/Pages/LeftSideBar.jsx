@@ -23,7 +23,7 @@ export default function LeftSideBar() {
 
       <div className="mt-6 text-xs uppercase tracking-wide text-gray-400">Environments</div>
       <div className="mt-2 space-y-1">
-        <SidebarLink to="/documentation/env/local">Local Environment</SidebarLink>
+        <SidebarLink to="/documentation/local">Local Environment</SidebarLink>
         <SidebarLink to="/documentation/env/prod">Production Environment</SidebarLink>
         <SidebarLink to="/documentation/env/custom">Custom Server</SidebarLink>
       </div>
