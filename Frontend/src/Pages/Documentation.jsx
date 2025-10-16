@@ -2,8 +2,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import LeftSideBar from "./LeftSideBar";
-import RightSideBar from "./RightSideBar";
+import LeftSideBar from "../components/LeftSideBar";
+import RightSideBar from "../components/RightSideBar";
 
 export default function Documentation() {
   return (

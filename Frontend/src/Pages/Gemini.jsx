@@ -1,6 +1,6 @@
 import React from "react";
-import tutorialImage1 from "../assets/39f84688-fc68-4339-a920-7a32c0ab7cac.png";
-import tutorialImage2 from "../assets/76a9d18e-8999-41b5-b04a-3eec29b99c0a.png";
+// import tutorialImage1 from "../assets/39f84688-fc68-4339-a920-7a32c0ab7cac.png";
+// import tutorialImage2 from "../assets/76a9d18e-8999-41b5-b04a-3eec29b99c0a.png";
 
 export default function Documentation() {
   return (
@@ -59,11 +59,11 @@ export default function Documentation() {
 
         {/* Image */}
         <div className="rounded-xl border bg-gray-50 overflow-hidden shadow-sm">
-          <img
+          {/* <img
             src={tutorialImage1}
             alt="Google AI Studio API Key Creation"
             className="w-full h-auto object-contain"
-          />
+          /> */}
           <p className="text-sm text-center text-gray-500 py-3">
             A figure displaying how to create your own API key on Google AI Studio.
           </p>
@@ -89,11 +89,11 @@ export default function Documentation() {
 
       {/* Optional second image (bottom graphic) */}
       <div className="mt-8">
-        <img
+        {/* <img
           src={tutorialImage2}
           alt="Additional instructions"
           className="w-full h-auto rounded-lg shadow-sm"
-        />
+        /> */}
       </div>
     </div>
   );

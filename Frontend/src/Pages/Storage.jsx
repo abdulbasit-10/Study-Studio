@@ -188,3 +188,4 @@ NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET = your-cloudinary-upload-preset`}</code></p
     </div>
   );
 }
+
