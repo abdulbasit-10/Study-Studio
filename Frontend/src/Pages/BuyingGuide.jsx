@@ -1,10 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function BuyingGuide() {
   return (
     <section className="max-w-3xl mx-auto px-4 py-12 text-gray-800">
       {/* Title */}
       <h1 className="text-3xl font-semibold mb-6">Which License To Buy?</h1>
+      {/* divider + last-updated (shown under the line) */}
+      <hr className="border-t border-gray-200 mb-3" />
+      <div className="text-right text-sm text-gray-500 mb-6">Last updated on November 3, 2024</div>
 
       {/* Intro paragraph */}
       <p className="mb-6">
@@ -99,11 +103,30 @@ export default function BuyingGuide() {
         Turn StudyStudio into a revenue-generating machine with the Extended
         License.
       </p>
+      <p className="text-right">Last updated on November 3, 2024</p>
 
+      {/* Prev / Next navigation (left and right) */}
+      <nav className="mt-10 border-t border-gray-200 pt-6">
+        <div className="flex justify-between font-semibold hover:text-green-500 items-center text-sm text-black">
+          <Link to="/documentation/how-it-works" className="flex items-center space-x-3 hover:text-gray-900">
+            <span className="text-2xl">‹</span>
+            <span>How It Works</span>
+          </Link>
+
+          <Link to="/documentation/local" className="flex items-center space-x-3 hover:text-gray-900">
+            <span>Local Environment</span>
+            <span className="text-2xl">›</span>
+          </Link>
+        </div>
+      </nav>
+      
       {/* Footer note */}
-      <p className="text-sm text-gray-500 border-t pt-6">
-        Last updated on November 3, 2024
-      </p>
+        <footer className="w-full border-t border-gray-300 text-center py-3 mt-10 text-lg text-gray-800">
+        © 2025{" "}
+        <span className="text-gray-800">StudyStudio Inc.</span> All
+        rights reserved.
+      </footer>
     </section>
+    
   );
 }

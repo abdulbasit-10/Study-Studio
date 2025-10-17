@@ -16,8 +16,9 @@ import DatabaseORM from "./Pages/DatabaseORM";
 import Storage from "./Pages/Storage";
 import Database from "./Pages/Database";
 import StartingServer from "./Pages/StartingServer";
-
 import StoppingServer from "./Pages/StoppingServer";
+import CustomServer from "./Pages/CustomServer";
+
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="database" element={<Database />} />
           <Route path="starting-server" element={<StartingServer />} />
           <Route path="stopping-server" element={<StoppingServer />} />
+          <Route path="custom" element={<CustomServer />} />
           {/* add more nested doc routes here */}
         </Route>
 

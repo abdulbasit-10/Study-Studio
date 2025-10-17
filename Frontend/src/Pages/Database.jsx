@@ -1,117 +1,222 @@
-import React from "react";
+export default function DatabaseDoc() {
+  return (
+    <main className="max-w-4xl mx-auto px-6 py-12 text-gray-800">
+      {/* Neon Section */}
+      <h1 className="text-3xl sm:text-4xl font-bold mb-6">Neon</h1>
 
-export default function Database() {
-	return (
-		<div className="min-h-screen bg-gray-50 text-gray-800 flex items-start justify-center py-8 sm:py-10">
-			<div className="w-full max-w-3xl sm:max-w-4xl px-4 sm:px-6 md:px-8">
-				<article className="prose sm:prose lg:prose-lg max-w-none">
-					<h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold">Database</h1>
-					<p className="text-gray-600 text-sm sm:text-base">
-						StudyStudio supports multiple database providers. Choose the one that fits your needs — self-hosted or managed services are both supported. Below are the common setup steps for Neon, Pinecone and Upstash.
-					</p>
+      <Note tone="info" className="mb-4">
+        <strong>Neon</strong> is completely open-source. Personally, we’re using Neon itself to host
+        the database. The experience has been smooth with no issues. You can also use its
+        self-hosting capabilities or host it on your own server — see their{" "}
+        <a href="#" className="underline text-blue-800">
+          documentation
+        </a>
+        .
+      </Note>
 
-					<section id="neon" className="mt-6 sm:mt-8">
-						<h2 className="text-xl sm:text-2xl font-bold">Neon</h2>
-						<p className="text-gray-600 text-sm sm:text-base">
-							Neon is an open-source serverless Postgres platform. You can host it on Neon or on a similar serverless Postgres provider. Follow the steps below to configure Neon for StudyStudio.
-						</p>
+      <Note tone="warning" className="mb-8">
+        Please make sure to follow all of the following setup steps and configure dependencies and
+        services accordingly.
+      </Note>
 
-						<ol className="mt-4 list-decimal list-inside space-y-4 sm:space-y-6">
-							<li>
-								<h3 className="font-semibold text-sm sm:text-base">Setup Neon Account</h3>
-								<p className="text-sm text-gray-600">
-									Create a Neon account, create a project and a branching database. Keep the connection string ready.
-								</p>
-								<div className="mt-3 bg-white border rounded-lg overflow-hidden shadow-sm">
-									<div className="p-3 sm:p-4">
-										<div className="w-full h-36 sm:h-40 md:h-48 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-											<span className="text-xs sm:text-sm">Screenshot: Neon dashboard (placeholder)</span>
-										</div>
-									</div>
-								</div>
-							</li>
+      <p className="text-gray-700 leading-relaxed mb-6">
+        The database service used in <span className="font-semibold">StudyStudio</span> is{" "}
+        <a href="#" className="text-green-700 underline hover:text-green-800">
+          Neon
+        </a>
+        . Neon is an open-source serverless Postgres database platform for developers. You can use
+        Neon to host the database on a serverless architecture without needing to pay for
+        maintenance.
+      </p>
 
-							<li>
-								<h3 className="font-semibold text-sm sm:text-base">Get Connection String</h3>
-								<p className="text-sm text-gray-600">Copy the Neon connection string (postgres://...)</p>
-								<pre className="bg-gray-900 text-gray-100 rounded-lg p-3 sm:p-4 overflow-auto text-xs sm:text-sm whitespace-pre">
-<code>{`# .env.local
-NEON_CONNECTION_STRING=postgres://user:pass@host:5432/dbname`}</code>
-								</pre>
-							</li>
-						</ol>
-					</section>
+      <p className="text-gray-700 leading-relaxed mb-10">
+        If you have followed the previous guide, then this step has already been configured
+        properly. Additionally, we’re required to setup a storage service and some database
+        services used for our AI model. This step is quite significant if you want AI to be
+        fine-tuned and learn from data.
+      </p>
 
-					<section id="pinecone" className="mt-6 sm:mt-8">
-						<h2 className="text-xl sm:text-2xl font-bold">Pinecone</h2>
-						<p className="text-gray-600 text-sm sm:text-base">
-							Pinecone is a vector database used for similarity search in ML applications. Use Pinecone for embeddings and vector search.
-						</p>
+      {/* Pinecone Section */}
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4">Pinecone</h2>
 
-						<ol className="mt-4 list-decimal list-inside space-y-4 sm:space-y-6">
-							<li>
-								<h3 className="font-semibold text-sm sm:text-base">Setup Pinecone Account</h3>
-								<p className="text-sm text-gray-600">
-									Create an index in Pinecone. Configure dimensions and metric as required.
-								</p>
-								<div className="mt-3 bg-white border rounded-lg overflow-hidden shadow-sm">
-									<div className="p-3 sm:p-4">
-										<div className="w-full h-36 sm:h-40 md:h-48 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-											<span className="text-xs sm:text-sm">Screenshot: Pinecone index creation (placeholder)</span>
-										</div>
-									</div>
-								</div>
-							</li>
+      <p className="text-gray-700 mb-8">
+        <a href="#" className="text-green-700 underline hover:text-green-800">
+          Pinecone
+        </a>{" "}
+        is a cloud-based vector database for machine learning applications. It represents data as
+        vectors, enabling fast and scalable search for similar data points in databases. This makes
+        it essential for managing, ranking, and retrieving AI embeddings.
+      </p>
 
-							<li>
-								<h3 className="font-semibold text-sm sm:text-base">Get Pinecone API Key & Index</h3>
-								<p className="text-sm text-gray-600">Copy your Pinecone API key and index name from the Pinecone dashboard.</p>
-								<pre className="bg-gray-900 text-gray-100 rounded-lg p-3 sm:p-4 overflow-auto text-xs sm:text-sm whitespace-pre">
-<code>{`# .env.local
+      {/* Step 1 */}
+      <Step number={1} title="Setup Pinecone Account">
+        Create an account on{" "}
+        <a href="#" className="text-green-700 underline hover:text-green-800">
+          Pinecone
+        </a>{" "}
+        and get your <Code>Pinecone Index</Code>. Click on <Code>Create Index</Code> and set up your
+        index name. Make sure the <Code>dimension</Code> is set to 1536 and <Code>metric</Code> is
+        set to <Code>cosine</Code>. Choose your <Code>Cloud Provider</Code> and <Code>Region</Code>{" "}
+        to be default. Afterwards, click <Code>Create Index</Code>.
+        <figure className="mt-6">
+          <img
+            src="/images/pinecone-index.png"
+            alt="Pinecone dashboard example"
+            className="w-full rounded-xl shadow-lg"
+          />
+          <figcaption className="text-sm text-gray-500 text-center mt-2">
+            Example for the creation of an index on a Pinecone dashboard.
+          </figcaption>
+        </figure>
+      </Step>
+
+      {/* Step 2 */}
+      <Step number={2} title="Getting the Pinecone environment variables">
+        Afterwards, you’ll be redirected to the <Code>Index</Code> you just created. Click{" "}
+        <Code>Connect</Code> and get your <Code>Pinecone API Key</Code> from the{" "}
+        <Code>Initialize</Code> section. Click on <Code>Show API Key</Code>, copy it, and save it
+        for later use.
+        <figure className="mt-6">
+          <img
+            src="/images/pinecone-api.png"
+            alt="Pinecone API key example"
+            className="w-full rounded-xl shadow-lg"
+          />
+          <figcaption className="text-sm text-gray-500 text-center mt-2">
+            Example for getting the API key of an index on a Pinecone dashboard.
+          </figcaption>
+        </figure>
+      </Step>
+
+      {/* Step 3 */}
+      <Step
+        number={3}
+        title="Replacing Pinecone Index, Pinecone Environment, and Pinecone API Key"
+      >
+        Replace your <Code>pinecone-index</Code> with your original{" "}
+        <span className="font-medium">Pinecone Index Name</span>, your{" "}
+        <Code>pinecone-environment</Code> with <Code>us-east-1</Code> or <Code>gcp</Code>{" "}
+        depending on your setup, and your <Code>pinecone-api-key</Code> with your original API key.
+        <pre className="bg-green-50 border border-green-100 rounded-lg p-4 text-sm overflow-x-auto mt-4">
+{`# env.local
 PINECONE_INDEX=your-pinecone-index
-PINECONE_ENVIRONMENT=your-pinecone-environment
-PINECONE_API_KEY=your-pinecone-api-key`}</code>
-								</pre>
-							</li>
-						</ol>
-					</section>
+PINECONE_ENVIRONMENT="us-east-1"  # or "gcp"
+PINECONE_API_KEY=your-pinecone-api-key`}
+        </pre>
+        <p className="text-gray-700 leading-relaxed mt-3">
+          This completes the setup of Pinecone for your StudyStudio application.
+        </p>
+      </Step>
 
-					<section id="upstash" className="mt-6 sm:mt-8">
-						<h2 className="text-xl sm:text-2xl font-bold">Upstash</h2>
-						<p className="text-gray-600 text-sm sm:text-base">
-							Upstash provides serverless Redis which is convenient for caching, rate-limiting and small persistence needs.
-						</p>
+      {/* Upstash Section */}
+      <h2 className="text-2xl sm:text-3xl font-bold mt-16 mb-4">Upstash</h2>
 
-						<ol className="mt-4 list-decimal list-inside space-y-4 sm:space-y-6">
-							<li>
-								<h3 className="font-semibold text-sm sm:text-base">Setup Upstash Account</h3>
-								<p className="text-sm text-gray-600">Create a Redis database on Upstash and note the REST URL and token.</p>
-								<div className="mt-3 bg-white border rounded-lg overflow-hidden shadow-sm">
-									<div className="p-3 sm:p-4">
-										<div className="w-full h-36 sm:h-40 md:h-48 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-											<span className="text-xs sm:text-sm">Screenshot: Upstash dashboard (placeholder)</span>
-										</div>
-									</div>
-								</div>
-							</li>
+      <p className="text-gray-700 mb-8">
+        <a href="#" className="text-green-700 underline hover:text-green-800">
+          Upstash
+        </a>{" "}
+        is a serverless Redis database that can be used to store and manage data. It helps control
+        request limits efficiently and runs smoothly even during heavy loads. With its generous
+        free tier, it’s perfect for managing small or moderate workloads.
+      </p>
 
-							<li>
-								<h3 className="font-semibold text-sm sm:text-base">Get Upstash Environment Variables</h3>
-								<p className="text-sm text-gray-600">Copy the REST URL and token and add them to your environment file.</p>
-								<pre className="bg-gray-900 text-gray-100 rounded-lg p-3 sm:p-4 overflow-auto text-xs sm:text-sm whitespace-pre">
-<code>{`# .env.local
+      {/* Step 1 */}
+      <Step number={1} title="Setup Upstash Account">
+        Create an account on{" "}
+        <a href="#" className="text-green-700 underline hover:text-green-800">
+          Upstash
+        </a>{" "}
+        and log in. Click <Code>Create Database</Code> and then set your database name. Make sure
+        the plan is set to <Code>Free</Code>. Once done, you’ll see your database dashboard.
+        <figure className="mt-6">
+          <img
+            src="/images/upstash-db.png"
+            alt="Upstash dashboard example"
+            className="w-full rounded-xl shadow-lg"
+          />
+          <figcaption className="text-sm text-gray-500 text-center mt-2">
+            Example after the post-creation of a database on an Upstash dashboard.
+          </figcaption>
+        </figure>
+      </Step>
+
+      {/* Step 2 */}
+      <Step number={2} title="Getting the Upstash environment variables">
+        From the <Code>Database</Code> view, click <Code>REST API</Code>. Copy your{" "}
+        <Code>REST URL</Code> and <Code>REST Token</Code>. Save them for later use.
+        <figure className="mt-6">
+          <img
+            src="/images/upstash-env.png"
+            alt="Upstash REST variables"
+            className="w-full rounded-xl shadow-lg"
+          />
+          <figcaption className="text-sm text-gray-500 text-center mt-2">
+            Example for getting the environment variables of the database on an Upstash dashboard.
+          </figcaption>
+        </figure>
+      </Step>
+
+      {/* Step 3 */}
+      <Step number={3} title="Replacing Upstash Environment Variables">
+        Replace <Code>upstash-redis-rest-url</Code> with your original{" "}
+        <span className="font-medium">Upstash Redis REST URL</span> and{" "}
+        <Code>upstash-redis-rest-token</Code> with your{" "}
+        <span className="font-medium">Upstash Redis REST Token</span> value.
+        <pre className="bg-green-50 border border-green-100 rounded-lg p-4 text-sm overflow-x-auto mt-4">
+{`# env.local
 UPSTASH_REDIS_REST_URL=your-upstash-redis-rest-url
-UPSTASH_REDIS_REST_TOKEN=your-upstash-redis-rest-token`}</code>
-								</pre>
-							</li>
-						</ol>
-					</section>
+UPSTASH_REDIS_REST_TOKEN=your-upstash-redis-rest-token`}
+        </pre>
+        <p className="text-gray-700 leading-relaxed mt-3">
+          This completes the setup of Upstash for your StudyStudio application as well as the setup
+          of the database services.
+        </p>
+      </Step>
 
-					<footer className="mt-8 sm:mt-12 text-sm text-gray-500">
-						<p>Last updated on November 10, 2024</p>
-					</footer>
-				</article>
-			</div>
-		</div>
-	);
+      {/* Footer */}
+      <div className="text-right text-xs text-gray-500 mt-10">
+        Last updated on November 10, 2024
+      </div>
+      <nav className="flex items-center justify-between mt-8 pt-6 border-t text-green-700 text-sm">
+        <a href="#" className="hover:underline">
+          ‹ Storage
+        </a>
+        <a href="#" className="hover:underline">
+          Starting Server ›
+        </a>
+      </nav>
+    </main>
+  );
+}
+
+/* ---------- UI Helper Components ---------- */
+
+function Step({ number, title, children }) {
+  return (
+    <section className="relative pl-12 sm:pl-14 mb-10">
+      <div className="absolute left-0 top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-sm font-semibold text-gray-700">
+        {number}
+      </div>
+      <h2 className="text-xl sm:text-2xl font-bold mb-3">{title}</h2>
+      <div className="text-gray-700 leading-relaxed">{children}</div>
+    </section>
+  );
+}
+
+function Code({ children }) {
+  return (
+    <code className="bg-gray-100 rounded px-1 py-0.5 text-sm">{children}</code>
+  );
+}
+
+function Note({ children, tone = "info", className = "" }) {
+  const tones = {
+    info: "bg-blue-50 border-blue-100 text-blue-900",
+    warning: "bg-yellow-50 border-yellow-100 text-yellow-900",
+  };
+  return (
+    <div className={`rounded-md px-4 py-3 text-sm border ${tones[tone]} ${className}`}>
+      {children}
+    </div>
+  );
 }

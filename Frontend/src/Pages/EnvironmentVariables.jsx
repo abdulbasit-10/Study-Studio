@@ -1,5 +1,6 @@
 // src/Documentation/EnvironmentVariables.jsx
 import React from "react";
+import envPreviewImage from "../assets/Environment.webp"; // adjust the path as needed
 
 export default function EnvironmentVariables({ lastUpdated = "November 8, 2024" }) {
   const envExample = `# CLERK (Authentication service)
@@ -90,7 +91,7 @@ VERCEL_DEEP_CLONE = true
           <div className="bg-white shadow-sm rounded-md overflow-hidden">
             {/* Replace the src with your actual preview image import or URL */}
             <img
-              src="/assets/env-folder-preview.png"
+              src={envPreviewImage}
               alt="Project root with .env.local file"
               className="w-full h-56 sm:h-72 object-cover"
             />

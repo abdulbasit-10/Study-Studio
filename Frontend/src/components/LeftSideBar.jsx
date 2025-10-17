@@ -26,10 +26,18 @@ const SUB_LINKS = [
   { label: "Stopping Server", to: "/documentation/stopping-server" },
 ];
 
+const PROD_LINKS = [
+  { label: "Overview", to: "/documentation/env/prod" },
+  { label: "Deploying", to: "/documentation/env/prod/deploying" },
+  { label: "Scaling", to: "/documentation/env/prod/scaling" },
+  { label: "Monitoring", to: "/documentation/env/prod/monitoring" },
+];
+
 export default function LeftSideBar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [prodExpanded, setProdExpanded] = useState(false);
 
   // auto-expand when current route matches any of the sub-links or the local page
   useEffect(() => {
@@ -37,12 +45,21 @@ export default function LeftSideBar() {
     if (path === "/documentation/local" || SUB_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))) {
       setExpanded(true);
     }
+
+    if (path === "/documentation/env/prod" || PROD_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))) {
+      setProdExpanded(true);
+    }
   }, [location.pathname]);
 
   function handleParentClick() {
     // navigate to the Local Environment page and toggle expansion
     navigate("/documentation/local");
     setExpanded((v) => !v);
+  }
+
+  function handleProdClick() {
+    navigate("/documentation/env/prod");
+    setProdExpanded((v) => !v);
   }
 
   return (
@@ -56,15 +73,30 @@ export default function LeftSideBar() {
 
       </div>
 
-      <div className="mt-6 text-xs uppercase tracking-wide text-gray-400">Environments</div>
+      <div className="mt-6 text-xs uppercase tracking-wide text-black font-semibold">Environments</div>
       <div className="mt-2 space-y-1">
-        <div>
+  <div>
           <button
             onClick={handleParentClick}
             className="w-full text-left block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50"
             aria-expanded={expanded}
           >
-            Local Environment
+            <span className="flex items-center justify-between w-full">
+              <span>Local Environment</span>
+              {/* dropdown chevron */}
+              <svg
+                className={`ml-2 h-4 w-4 transform transition-transform duration-150 ease-in-out ${expanded ? "rotate-180" : ""}`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
           </button>
 
           {expanded && (
@@ -77,9 +109,43 @@ export default function LeftSideBar() {
             </div>
           )}
         </div>
-        <SidebarLink to="/documentation/env/prod">Production Environment</SidebarLink>
-        <SidebarLink to="/documentation/env/custom">Custom Server</SidebarLink>
+        <div>
+          <button
+            onClick={handleProdClick}
+            className="w-full text-left block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+            aria-expanded={prodExpanded}
+          >
+            <span className="flex items-center justify-between w-full">
+              <span>Production Environment</span>
+              <svg
+                className={`ml-2 h-4 w-4 transform transition-transform duration-150 ease-in-out ${prodExpanded ? "rotate-180" : ""}`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </button>
+
+          {prodExpanded && (
+            <div className="mt-2 ml-3 space-y-1">
+              {PROD_LINKS.map((s) => (
+                <SidebarLink key={s.to} to={s.to}>
+                  {s.label}
+                </SidebarLink>
+              ))}
+            </div>
+          )}
+        </div>
+        <SidebarLink to="/documentation/custom">Custom Server Environment</SidebarLink>
+        <SidebarLink>More</SidebarLink>
+        <SidebarLink>Study Studio</SidebarLink>
       </div>
-    </div>
+    </div> 
   );
 }

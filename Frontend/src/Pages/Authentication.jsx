@@ -1,84 +1,145 @@
-import React from "react";
+export default function AuthenticationDoc() {
+  return (
+    <main className="max-w-4xl mx-auto px-6 py-12 text-gray-800">
+      {/* Heading */}
+      <h1 className="text-4xl font-bold mb-6">Authentication</h1>
 
-export default function Authentication() {
-	return (
-		<div className="min-h-screen bg-gray-50 text-gray-800 flex items-start justify-center py-10">
-			<div className="w-full max-w-3xl px-4">
-				<article className="prose prose-lg max-w-none">
-					<section id="create-account" className="mb-8">
-						<h2 className="text-2xl font-bold">1. Create a Clerk Account</h2>
-						<p className="text-gray-600">
-							Navigate to the Clerk Signin Page and sign up. After signing up you will be redirected to the Clerk dashboard where you can create a new application.
-						</p>
+      <p className="text-gray-700 mb-8 leading-relaxed">
+        For authentication purposes, <span className="font-semibold">StudyStudio</span> uses{" "}
+        <a href="#" className="text-green-700 underline hover:text-green-800">
+          Clerk
+        </a>{" "}
+        to implement the backend for managing sign-ups and sign-ins using
+        multiple beautiful minimalist authentication pages. When running it
+        locally, we use their test environment to self-host it on our local
+        machine.
+      </p>
 
-						<div className="mt-4 bg-white border rounded-lg overflow-hidden shadow-sm">
-							<div className="p-4">
-								<div className="w-full h-48 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-									{/* Replace with real screenshot path or component */}
-									<span>Screenshot: Clerk dashboard while creating a new application</span>
-								</div>
-								<p className="mt-3 text-sm text-gray-500">Clerk dashboard while creating a new application.</p>
-							</div>
-						</div>
-					</section>
+      <p className="text-gray-700 mb-10 leading-relaxed">
+        To sign in or sign up, you will need to enter your email address or
+        connect your Google/Facebook account and follow the given steps.
+      </p>
 
-					<section id="create-application" className="mb-8">
-						<h2 className="text-2xl font-bold">2. Creating an Application</h2>
-						<p className="text-gray-600">
-							When creating an application you will be asked to enter the name and sign-in methods (Email, Google, Facebook, etc.). For this guide we use Email, Google and Facebook sign-in methods.
-						</p>
+      {/* Step 1 */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">
+          1. Create a Clerk Account
+        </h2>
+        <p className="text-gray-700 mb-6 leading-relaxed">
+          Navigate to the{" "}
+          <a href="#" className="text-green-700 underline hover:text-green-800">
+            Clerk Signin Page
+          </a>{" "}
+          and sign up. You’ll be redirected to the Clerk dashboard. Click on{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">Create application</code>.
+        </p>
 
-						<div className="mt-4 bg-white border rounded-lg overflow-hidden shadow-sm">
-							<div className="p-4">
-								<div className="w-full h-48 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-									<span>Screenshot: Setting up a new application on Clerk</span>
-								</div>
-								<p className="mt-3 text-sm text-gray-500">Setting up a new application on Clerk.</p>
-							</div>
-						</div>
-					</section>
+        <img
+          src="/images/clerk-step1.png"
+          alt="Clerk dashboard"
+          className="rounded-xl shadow-lg mb-3"
+        />
+        <p className="text-sm text-gray-500 text-center">
+          Clerk dashboard while creating a new application.
+        </p>
+      </section>
 
-					<section id="setup-application" className="mb-8">
-						<h2 className="text-2xl font-bold">3. Setting up the Application</h2>
-						<p className="text-gray-600">
-							After creating the application you can find the Publishable Key and Secret Key in the application settings. Copy these keys to your project's .env.local file.
-						</p>
+      {/* Step 2 */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">2. Creating an Application</h2>
+        <p className="text-gray-700 mb-6 leading-relaxed">
+          Once you are in the process of creating an application, you will be
+          asked to enter the name of the application and select the appropriate
+          sign-in/sign-up methods for your users. For this project, we are using
+          the{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            Email
+          </code>
+          ,{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            Google
+          </code>{" "}
+          and{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            Facebook
+          </code>{" "}
+          sign-in methods.
+        </p>
 
-						<div className="mt-4 bg-white border rounded-lg overflow-hidden shadow-sm">
-							<div className="p-4">
-								<div className="w-full h-48 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-									<span>Screenshot: Finding publishable and secret keys on the dashboard</span>
-								</div>
-								<p className="mt-3 text-sm text-gray-500">Finding publishable and secret keys on the dashboard.</p>
-							</div>
-						</div>
-					</section>
+        <img
+          src="/images/clerk-step2.png"
+          alt="Clerk app creation"
+          className="rounded-xl shadow-lg mb-3"
+        />
+        <p className="text-sm text-gray-500 text-center">
+          Setting up a new application on Clerk.
+        </p>
+      </section>
 
-					<section id="replace-keys" className="mb-8">
-						<h2 className="text-2xl font-bold">4. Replacing Clerk Publishable Key and Clerk Secret Key</h2>
-						<p className="text-gray-600">
-							Replace the example keys below with the keys from the Clerk dashboard in your .env.local file at the root of the project.
-						</p>
+      {/* Step 3 */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">3. Setting up the Application</h2>
+        <p className="text-gray-700 mb-6 leading-relaxed">
+          Afterwards, you’ll be redirected to the application settings page
+          where you can find the{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            Publishable Key
+          </code>{" "}
+          and{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            Secret Key
+          </code>
+          . Copy these keys and paste them in the{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            .env.local
+          </code>{" "}
+          file in the root directory of your project.
+        </p>
 
-						<div className="mt-4">
-							<pre className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-auto text-sm">
-								<code>
-{`# .env.local
-REACT_APP_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
-REACT_APP_CLERK_SECRET_KEY=your-clerk-secret-key`}
-								</code>
-							</pre>
-							<p className="mt-3 text-sm text-gray-500">
-								With this, you have successfully set up the authentication service for StudyStudio. Proceed to configure payment gateways next.
-							</p>
-						</div>
-					</section>
+        <img
+          src="/images/clerk-step3.png"
+          alt="Clerk settings"
+          className="rounded-xl shadow-lg mb-3"
+        />
+        <p className="text-sm text-gray-500 text-center">
+          Finding publishable and secret keys on the dashboard.
+        </p>
+      </section>
 
-					<footer className="mt-12 text-sm text-gray-500">
-						<p>Last updated on November 10, 2024</p>
-					</footer>
-				</article>
-			</div>
-		</div>
-	);
+      {/* Step 4 */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">
+          4. Replacing Clerk Keys
+        </h2>
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          Replace the{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            your-clerk-publishable-key
+          </code>{" "}
+          and{" "}
+          <code className="bg-gray-100 px-1 rounded text-sm">
+            your-clerk-secret-key
+          </code>{" "}
+          with the ones provided in the Clerk dashboard.
+        </p>
+
+        <pre className="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6">
+{`# CLERK (Authentication service)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="clerk-publishable-key"
+CLERK_SECRET_KEY="clerk-secret-key"`}
+        </pre>
+
+        <p className="text-gray-700 leading-relaxed">
+          With this, you’ve successfully set up authentication for StudyStudio.
+          You can now move on to the next section to set up the payment
+          gateways.
+        </p>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-gray-500 text-sm mt-16 text-center border-t pt-6">
+        © 2025 StudyStudio Inc. All rights reserved.
+      </footer>
+    </main>
+  );
 }
