@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import PreviewImage from '../assets/1.webp'
+import PreviewImage from "../assets/1.webp";
 
 export default function App() {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -64,26 +64,29 @@ not. The choice is yours.`,
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-
       {/* Documentation Content */}
-        <main className="flex-1 pt-1 px-3 max-w-4xl mx-auto">
-          <p className="text-sm text-gray-500 mb-4">
-            Documentation &gt; <span className="text-gray-700 font-medium">Introduction</span>
-          </p>
-    </main>
+      <main className="flex-1 pt-1 px-3 max-w-4xl mx-auto">
+        <p className="text-sm text-gray-500 mb-4">
+          Documentation &gt;{" "}
+          <span className="text-gray-700 font-medium">Introduction</span>
+        </p>
+      </main>
       {/* Introduction */}
       <section className="max-w-6xl mx-auto px-2 py-3">
         <h2 className="text-3xl font-bold mb-4">StudyStudio</h2>
         <p className="text-gray-700 leading-relaxed">
-          Introducing <strong>StudyStudio</strong>, an educational SaaS platform powered by Gemini that lets students
-          and parents create personalized AI tutors for any subject. With StudyStudio, say goodbye to high tutoring 
-          costs and hello to flexible, on-demand learning. This intuitive platform makes it easy to tailor AI tutors 
-          to specific coursework needs, allowing users to chat and learn at their own pace. Built with Next.js, React, 
-          and Gemini StudyStudio is your ultimate tool to transform tutoring, making education accessible, customizable, 
+          Introducing <strong>StudyStudio</strong>, an educational SaaS platform
+          powered by Gemini that lets students and parents create personalized
+          AI tutors for any subject. With StudyStudio, say goodbye to high
+          tutoring costs and hello to flexible, on-demand learning. This
+          intuitive platform makes it easy to tailor AI tutors to specific
+          coursework needs, allowing users to chat and learn at their own pace.
+          Built with Next.js, React, and Gemini StudyStudio is your ultimate
+          tool to transform tutoring, making education accessible, customizable,
           and affordable.
         </p>
 
-          <img
+        <img
           src={PreviewImage}
           alt="StudyStudio preview"
           className="mt-8 rounded-xl shadow-lg"
@@ -103,30 +106,32 @@ not. The choice is yours.`,
           </p>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {["Local Environment", "Production Environment", "Custom Server Environment"].map(
-              (env) => (
-                <div
-                  key={env}
-                  className="border rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition"
-                >
-                  <img
-                    src={PreviewImage}
-                    alt={env}
-                    className="w-full h-80 object-cover"
-                  />
-                  <div className="p-4 border-t">
-                    <h3 className="font-semibold text-gray-600  cursor-pointer">
-                      {env} →
-                    </h3>
-                  </div>
+            {[
+              "Local Environment",
+              "Production Environment",
+              "Custom Server Environment",
+            ].map((env) => (
+              <div
+                key={env}
+                className="border rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition"
+              >
+                <img
+                  src={PreviewImage}
+                  alt={env}
+                  className="w-full h-80 object-cover"
+                />
+                <div className="p-4 border-t">
+                  <h3 className="font-semibold text-gray-600  cursor-pointer">
+                    {env} →
+                  </h3>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
 
           <p className="mt-8 text-gray-600">
-            Currently using StudyStudio without using one of these built-in environments is
-            not possible.
+            Currently using StudyStudio without using one of these built-in
+            environments is not possible.
           </p>
         </div>
       </section>
@@ -135,11 +140,16 @@ not. The choice is yours.`,
       <section id="faq" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-3xl font-semibold mb-6">StudyStudio FAQs</h2>
         <p className="text-gray-700 mb-6">
-          The StudyStudio FAQs is a collection of useful questions and answers about the
-          project. If you have a question that isn’t answered here, please send us an{" "}
-          <a href="mailto:support@studystudio.com" className="text-green-600 underline">
+          The StudyStudio FAQs is a collection of useful questions and answers
+          about the project. If you have a question that isn’t answered here,
+          please send us an{" "}
+          <a
+            href="mailto:support@studystudio.com"
+            className="text-green-600 underline"
+          >
             email
-          </a>.
+          </a>
+          .
         </p>
 
         <div className="space-y-4">

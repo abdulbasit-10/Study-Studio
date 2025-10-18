@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 function SidebarLink({ to, children }) {
-  const base = "block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50";
+  const base =
+    "block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50";
   const active = "bg-emerald-50 text-emerald-700 font-medium";
   return (
     <NavLink to={to} className={({ isActive }) => `${base} ${isActive ? active : ""}`}>
@@ -11,7 +12,6 @@ function SidebarLink({ to, children }) {
     </NavLink>
   );
 }
-
 
 const SUB_LINKS = [
   { label: "Getting Started", to: "/documentation/getting-started" },
@@ -39,20 +39,25 @@ export default function LeftSideBar() {
   const [expanded, setExpanded] = useState(false);
   const [prodExpanded, setProdExpanded] = useState(false);
 
-  // auto-expand when current route matches any of the sub-links or the local page
+  // Auto-expand dropdowns when matching current route
   useEffect(() => {
     const path = location.pathname;
-    if (path === "/documentation/local" || SUB_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))) {
+    if (
+      path === "/documentation/local" ||
+      SUB_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
+    ) {
       setExpanded(true);
     }
 
-    if (path === "/documentation/env/prod" || PROD_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))) {
+    if (
+      path === "/documentation/env/prod" ||
+      PROD_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
+    ) {
       setProdExpanded(true);
     }
   }, [location.pathname]);
 
   function handleParentClick() {
-    // navigate to the Local Environment page and toggle expansion
     navigate("/documentation/local");
     setExpanded((v) => !v);
   }
@@ -68,14 +73,14 @@ export default function LeftSideBar() {
         <SidebarLink to="/documentation">Introduction</SidebarLink>
         <SidebarLink to="/documentation/how-it-works">How It Works</SidebarLink>
         <SidebarLink to="/documentation/buying-guide">Buying Guide</SidebarLink>
-
-        
-
       </div>
 
-      <div className="mt-6 text-xs uppercase tracking-wide text-black font-semibold">Environments</div>
+      <div className="mt-6 text-xs uppercase tracking-wide text-black font-semibold">
+        Environments
+      </div>
       <div className="mt-2 space-y-1">
-  <div>
+        {/* Local Environment Dropdown */}
+        <div>
           <button
             onClick={handleParentClick}
             className="w-full text-left block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50"
@@ -83,9 +88,10 @@ export default function LeftSideBar() {
           >
             <span className="flex items-center justify-between w-full">
               <span>Local Environment</span>
-              {/* dropdown chevron */}
               <svg
-                className={`ml-2 h-4 w-4 transform transition-transform duration-150 ease-in-out ${expanded ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transform transition-transform duration-150 ease-in-out ${
+                  expanded ? "rotate-180" : ""
+                }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -109,6 +115,8 @@ export default function LeftSideBar() {
             </div>
           )}
         </div>
+
+        {/* Production Environment Dropdown */}
         <div>
           <button
             onClick={handleProdClick}
@@ -118,7 +126,9 @@ export default function LeftSideBar() {
             <span className="flex items-center justify-between w-full">
               <span>Production Environment</span>
               <svg
-                className={`ml-2 h-4 w-4 transform transition-transform duration-150 ease-in-out ${prodExpanded ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transform transition-transform duration-150 ease-in-out ${
+                  prodExpanded ? "rotate-180" : ""
+                }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -142,10 +152,20 @@ export default function LeftSideBar() {
             </div>
           )}
         </div>
+
         <SidebarLink to="/documentation/custom">Custom Server Environment</SidebarLink>
         <SidebarLink>More</SidebarLink>
-        <SidebarLink>Study Studio</SidebarLink>
+
+        {/* ✅ External Link to Study Studio */}
+        <a
+          href="https://studystudio.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+        >
+          Study Studio
+        </a>
       </div>
-    </div> 
+    </div>
   );
 }
