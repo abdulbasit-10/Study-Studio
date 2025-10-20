@@ -27,10 +27,7 @@ const SUB_LINKS = [
 ];
 
 // Mirror SUB_LINKS for production with a /documentation/production prefix
-const PROD_LINKS = SUB_LINKS.map((link) => ({
-  label: link.label,
-  to: link.to.replace("/documentation", "/documentation/production"),
-}));
+const PROD_LINKS = SUB_LINKS;
 
 export default function LeftSideBar() {
   const navigate = useNavigate();
@@ -39,26 +36,26 @@ export default function LeftSideBar() {
   const [prodExpanded, setProdExpanded] = useState(false);
 
   // Auto-expand dropdowns when matching current route
-  useEffect(() => {
-    const path = location.pathname;
-    if (
-      path === "/documentation/local" ||
-      SUB_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
-    ) {
-      setExpanded(true);
-    } else {
-      setExpanded(false);
-    }
+  // useEffect(() => {
+  //   const path = location.pathname;
+  //   if (
+  //     path === "/documentation/local" ||
+  //     SUB_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
+  //   ) {
+  //     setExpanded(true);
+  //   } else {
+  //     setExpanded(false);
+  //   }
 
-    if (
-      path === "/documentation/production" ||
-      PROD_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
-    ) {
-      setProdExpanded(true);
-    } else {
-      setProdExpanded(false);
-    }
-  }, [location.pathname]);
+  //   if (
+  //     path === "/documentation/production" ||
+  //     PROD_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
+  //   ) {
+  //     setProdExpanded(true);
+  //   } else {
+  //     setProdExpanded(false);
+  //   }
+  // }, [location.pathname]);
 
   function handleParentClick() {
     navigate("/documentation/local");

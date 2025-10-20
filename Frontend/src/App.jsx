@@ -19,7 +19,7 @@ import StartingServer from "./Pages/StartingServer";
 import StoppingServer from "./Pages/StoppingServer";
 import CustomServer from "./Pages/CustomServer";
 import ProductionEnvironment from "./Pages/ProductEnvironment";
-import Abc from "./Pages/Abc";
+
 
 
 export default function App() {
@@ -46,13 +46,10 @@ export default function App() {
           <Route path="starting-server" element={<StartingServer />} />
           <Route path="stopping-server" element={<StoppingServer />} />
           <Route path="custom" element={<CustomServer />} />
-
-          {/* add more nested doc routes here */}
         </Route>
-          <Route path="get-started" element={<Abc />} />
 
         {/* optional: redirect unknown paths */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
     </Router>
   );
