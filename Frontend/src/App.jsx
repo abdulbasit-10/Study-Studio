@@ -18,6 +18,8 @@ import Database from "./Pages/Database";
 import StartingServer from "./Pages/StartingServer";
 import StoppingServer from "./Pages/StoppingServer";
 import CustomServer from "./Pages/CustomServer";
+import ProductionEnvironment from "./Pages/ProductEnvironment";
+import Abc from "./Pages/Abc";
 
 
 export default function App() {
@@ -32,6 +34,7 @@ export default function App() {
           <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="buying-guide" element={<BuyingGuide />} />
           <Route path="local" element={<LocalEnvironment />} />
+          <Route path="production" element={<ProductionEnvironment />} />
           <Route path="getting-started" element={<GetStarted />} />
           <Route path="environment-variables" element={<EnvironmentVariables />} />
           <Route path="gemini" element={<Gemini />} />
@@ -43,8 +46,10 @@ export default function App() {
           <Route path="starting-server" element={<StartingServer />} />
           <Route path="stopping-server" element={<StoppingServer />} />
           <Route path="custom" element={<CustomServer />} />
+
           {/* add more nested doc routes here */}
         </Route>
+          <Route path="get-started" element={<Abc />} />
 
         {/* optional: redirect unknown paths */}
         <Route path="*" element={<Navigate to="/" replace />} />

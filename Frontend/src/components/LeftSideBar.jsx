@@ -26,13 +26,11 @@ const SUB_LINKS = [
   { label: "Stopping Server", to: "/documentation/stopping-server" },
 ];
 
-
-const PROD_LINKS = [
-  { label: "Overview", to: "/documentation/env/prod" },
-  { label: "Deploying", to: "/documentation/env/prod/deploying" },
-  { label: "Scaling", to: "/documentation/env/prod/scaling" },
-  { label: "Monitoring", to: "/documentation/env/prod/monitoring" },
-];
+// Mirror SUB_LINKS for production with a /documentation/production prefix
+const PROD_LINKS = SUB_LINKS.map((link) => ({
+  label: link.label,
+  to: link.to.replace("/documentation", "/documentation/production"),
+}));
 
 export default function LeftSideBar() {
   const navigate = useNavigate();
@@ -48,13 +46,17 @@ export default function LeftSideBar() {
       SUB_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
     ) {
       setExpanded(true);
+    } else {
+      setExpanded(false);
     }
 
     if (
-      path === "/documentation/env/prod" ||
+      path === "/documentation/production" ||
       PROD_LINKS.some((s) => path === s.to || path.startsWith(s.to + "/"))
     ) {
       setProdExpanded(true);
+    } else {
+      setProdExpanded(false);
     }
   }, [location.pathname]);
 
@@ -64,7 +66,7 @@ export default function LeftSideBar() {
   }
 
   function handleProdClick() {
-    navigate("/documentation/env/prod");
+    navigate("/documentation/production");
     setProdExpanded((v) => !v);
   }
 
@@ -86,6 +88,7 @@ export default function LeftSideBar() {
             onClick={handleParentClick}
             className="w-full text-left block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50"
             aria-expanded={expanded}
+            aria-controls="local-links"
           >
             <span className="flex items-center justify-between w-full">
               <span>Local Environment</span>
@@ -107,7 +110,7 @@ export default function LeftSideBar() {
           </button>
 
           {expanded && (
-            <div className="mt-2 ml-3 space-y-1">
+            <div id="local-links" className="mt-2 ml-3 space-y-1">
               {SUB_LINKS.map((s) => (
                 <SidebarLink key={s.to} to={s.to}>
                   {s.label}
@@ -123,6 +126,7 @@ export default function LeftSideBar() {
             onClick={handleProdClick}
             className="w-full text-left block text-sm px-3 py-2 rounded-md truncate text-gray-600 hover:text-gray-900 hover:bg-gray-50"
             aria-expanded={prodExpanded}
+            aria-controls="prod-links"
           >
             <span className="flex items-center justify-between w-full">
               <span>Production Environment</span>
@@ -143,8 +147,9 @@ export default function LeftSideBar() {
             </span>
           </button>
 
+          {/* FIX: render using prodExpanded (was using expanded before) */}
           {prodExpanded && (
-            <div className="mt-2 ml-3 space-y-1">
+            <div id="prod-links" className="mt-2 ml-3 space-y-1">
               {PROD_LINKS.map((s) => (
                 <SidebarLink key={s.to} to={s.to}>
                   {s.label}
@@ -155,7 +160,7 @@ export default function LeftSideBar() {
         </div>
 
         <SidebarLink to="/documentation/custom">Custom Server Environment</SidebarLink>
-        <SidebarLink>More</SidebarLink>
+        <SidebarLink to="/documentation/more">More</SidebarLink>
 
         {/* ✅ External Link to Study Studio */}
         <a
