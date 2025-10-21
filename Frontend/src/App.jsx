@@ -19,7 +19,8 @@ import StartingServer from "./Pages/StartingServer";
 import StoppingServer from "./Pages/StoppingServer";
 import CustomServer from "./Pages/CustomServer";
 import ProductionEnvironment from "./Pages/ProductEnvironment";
-
+import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
 
 
 export default function App() {
@@ -27,6 +28,8 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
 
         {/* Documentation layout route with nested pages */}
         <Route path="/documentation" element={<Documentation />}>

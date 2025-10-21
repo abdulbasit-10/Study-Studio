@@ -1,12 +1,14 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
 import { BookOpen, ArrowRight, Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // <-- added
 import logoUrl from "../assets/logo.svg";
 import profileUrl from "../assets/profile.svg";
 import documentationUrl from "../assets/Documentation.svg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate(); // <-- added
 
   return (
     <header className="bg-white border-b border-gray-200 fixed w-full z-30">
@@ -15,7 +17,6 @@ export default function Navbar() {
           {/* Left: Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center gap-3">
-              {/* using imported logo URL so it works with Vite */}
               <img src={logoUrl} alt="Study Studio" className="h-15 w-auto ml-10" />
             </a>
           </div>
@@ -33,14 +34,14 @@ export default function Navbar() {
             {/* vertical separator */}
             <div className="mx-4 h-6 w-px bg-gray-200" aria-hidden />
 
-            <a
-              href="/get-started"
-              className="inline-flex items-center gap-2 text-gray-500 text-sm font-medium px-4 py-2 transition hover:text-gray-900"
+            {/* ✅ Get Started button */}
+            <button
+              onClick={() => navigate("/signin")}
+              className="inline-flex items-center cursor-pointer gap-2 text-gray-500 text-sm font-medium px-4 py-2 transition hover:text-gray-900"
             >
-              {/* using profile.svg as an <img> (imported URL) */}
               <img src={profileUrl} alt="Profile icon" className="w-4 h-4" />
               <span>Get Started</span>
-            </a>
+            </button>
           </nav>
 
           {/* Mobile menu button */}
@@ -67,14 +68,15 @@ export default function Navbar() {
             <span>Documentation</span>
           </a>
 
-          <a
-            href="/get-started"
-            className="flex items-center gap-2 text-gray-700 px-2 py-2 rounded hover:bg-gray-50"
+          {/* ✅ Get Started button for mobile */}
+          <button
+            onClick={() => navigate("/signin")}
+            className="flex items-center gap-2 text-gray-700 px-2 py-2 rounded hover:bg-gray-50 w-full"
           >
             <img src={profileUrl} alt="Profile icon" className="w-4 h-4" />
             <span>Get Started</span>
             <ArrowRight size={14} />
-          </a>
+          </button>
         </div>
       </div>
     </header>
