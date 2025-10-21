@@ -21,7 +21,7 @@ import CustomServer from "./Pages/CustomServer";
 import ProductionEnvironment from "./Pages/ProductEnvironment";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
-
+import LearnMore from "./Pages/LearnMore";
 
 export default function App() {
   return (
@@ -30,6 +30,11 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+
+        {/* 🧠 Learn More dynamic page */}
+        <Route path="/learn-more" element={<LearnMore />} />
+        <Route path="/learn-more/:topic" element={<LearnMore />} />
+
 
         {/* Documentation layout route with nested pages */}
         <Route path="/documentation" element={<Documentation />}>

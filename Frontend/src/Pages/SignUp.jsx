@@ -18,11 +18,9 @@ export default function SignupCard() {
     if (!valid) return;
     setLoading(true);
     try {
-      // Simulated signup request — replace with real API call
       await new Promise((r) => setTimeout(r, 800));
-
       alert("Signed up successfully! Redirecting to home...");
-      navigate("/"); // 👈 redirect straight to home after signup
+      navigate("/"); // 👈 Go to home after signup
     } catch (err) {
       console.error("Signup failed:", err);
       alert("Signup failed. Please try again.");
@@ -32,7 +30,16 @@ export default function SignupCard() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center p-4">
+    <div className="relative min-h-screen w-full bg-gray-50 flex items-center justify-center p-4">
+      {/* 🏠 Home Button (top-left) */}
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-4 left-4 flex items-center justify-center w-10 h-10 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md transition"
+        title="Go to Home"
+      >
+        <HomeIcon className="w-5 h-5 text-gray-800" />
+      </button>
+
       <div className="w-full max-w-md">
         <div className="rounded-2xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
           <div className="p-6 sm:p-8">
@@ -67,7 +74,7 @@ export default function SignupCard() {
 
             {/* Divider */}
             <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200"></div>
               </div>
               <div className="relative flex justify-center text-sm">
@@ -125,7 +132,7 @@ export default function SignupCard() {
                   </button>
                 </div>
 
-                {/* ✅ Only show password hint when user typed something */}
+                {/* Only show password hint when user types */}
                 {password.length > 0 && (
                   <p
                     className={`mt-1 text-xs ${
@@ -142,7 +149,7 @@ export default function SignupCard() {
               <button
                 type="submit"
                 disabled={!valid || loading}
-                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-black disabled:opacity-60 disabled:cursor-not-allowed"
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gray-700 px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-black disabled:opacity-60"
               >
                 {loading ? "Please wait…" : "Continue"}
                 <ArrowRight className="h-4 w-4" />
@@ -150,7 +157,6 @@ export default function SignupCard() {
             </form>
           </div>
 
-          {/* Bottom */}
           <div className="border-t border-gray-100 bg-gray-50/60 p-4 text-center text-sm text-gray-600">
             <p>
               Already have an account?{" "}
@@ -169,7 +175,24 @@ export default function SignupCard() {
   );
 }
 
-/* ---------------- Colorful SVGs ---------------- */
+/* ---------- Home Icon ---------- */
+function HomeIcon({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
+    </svg>
+  );
+}
+
+/* ---------- Colorful Icons ---------- */
 function FacebookColor({ className = "" }) {
   return (
     <svg viewBox="0 0 24 24" className={className}>
@@ -205,7 +228,7 @@ function GoogleColor({ className = "" }) {
   );
 }
 
-/* ---------------- Utility icons ---------------- */
+/* ---------- Other Icons ---------- */
 function EyeIcon({ open, className = "" }) {
   if (open)
     return (

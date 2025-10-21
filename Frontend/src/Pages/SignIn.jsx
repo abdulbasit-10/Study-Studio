@@ -27,7 +27,6 @@ export default function SignIn() {
   const handleGoogleSignIn = () => {
     setLoading(true);
     alert("Redirecting to Google sign-in...");
-    // Replace this with real Google Auth (Firebase / Clerk / etc.)
     setTimeout(() => {
       navigate("/");
       setLoading(false);
@@ -38,7 +37,6 @@ export default function SignIn() {
   const handleFacebookSignIn = () => {
     setLoading(true);
     alert("Redirecting to Facebook sign-in...");
-    // Replace this with real Facebook Auth
     setTimeout(() => {
       navigate("/");
       setLoading(false);
@@ -46,7 +44,17 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gray-50 px-4">
+      {/* 🏠 Home Button (top-left) */}
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-4 left-4 flex items-center justify-center w-10 h-10 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md transition"
+        title="Go to Home"
+      >
+        <HomeIcon className="w-5 h-5 text-gray-800" />
+      </button>
+
+      {/* 🔹 Sign In Card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-10 text-center">
         <h2 className="text-xl font-semibold mb-1">Sign in to StudyStudio</h2>
         <p className="text-gray-500 text-sm mb-6">
@@ -97,7 +105,7 @@ export default function SignIn() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-black text-white rounded-lg py-2 font-medium mt-4 hover:bg-gray-800 transition disabled:opacity-50"
+            className="w-full bg-gray-700 text-white rounded-lg py-2 font-medium mt-4 hover:bg-black transition disabled:opacity-60"
           >
             {loading ? "Processing..." : "Continue →"}
           </button>
@@ -115,5 +123,22 @@ export default function SignIn() {
         </p>
       </div>
     </div>
+  );
+}
+
+/* ---------- 🏠 Home Icon ---------- */
+function HomeIcon({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
+    </svg>
   );
 }

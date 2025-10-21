@@ -64,21 +64,25 @@ export default function Hero() {
               icon={<CheckSquare className="w-6 h-6 text-emerald-600" />}
               title="AI Coursework"
               desc="Access a vast library of AI subject templates."
+              path="ai-coursework"
             />
             <Feature
               icon={<UserCheck className="w-6 h-6 text-emerald-600" />}
               title="Customizable AI Tutor"
               desc="24/7 AI tutoring, tailored to your needs."
+              path="ai-tutor"
             />
             <Feature
               icon={<BookOpen className="w-6 h-6 text-emerald-600" />}
               title="Free to Use"
               desc="Upgrade to unlock premium features."
+              path="free-to-use"
             />
             <Feature
               icon={<Clock className="w-6 h-6 text-emerald-600" />}
               title="24/7 Support"
               desc="Contact us 24 hours a day, 7 days a week."
+              path="support-24-7"
             />
           </div>
         </div>
@@ -88,7 +92,7 @@ export default function Hero() {
 }
 
 /* Feature card */
-function Feature({ icon, title, desc }) {
+function Feature({ icon, title, desc, path }) {
   return (
     <div
       className="group flex flex-col items-start p-4 md:p-6 text-left cursor-pointer 
@@ -100,7 +104,7 @@ function Feature({ icon, title, desc }) {
       <h3 className="text-sm font-semibold text-gray-800">{title}</h3>
       <p className="mt-1 text-sm text-gray-600">{desc}</p>
       <a
-        href="#"
+        href={`/learn-more/${path}`}
         className="mt-3 text-sm font-medium text-emerald-600 inline-flex items-center gap-2 
                    transition-all duration-200 group-hover:underline"
       >
