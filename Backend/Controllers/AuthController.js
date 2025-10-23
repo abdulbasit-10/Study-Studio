@@ -2,7 +2,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../Models/User.js");
-const { isEmail, isStrongPassword } = require("../utils/validators");
+const { isEmail, isStrongPassword } = require("../Utils/Validator.js");
+
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "7d";
