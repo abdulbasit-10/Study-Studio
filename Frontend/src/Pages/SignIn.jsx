@@ -1,46 +1,71 @@
 // src/SignIn.jsx
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { login } from "./Api/Auth";
+import { AuthContext } from "./AuthProvider";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
 
-  // 📧 Email Sign-in Handler
-  const handleSubmit = (e) => {
+  // basic email validation
+  const validEmail = /(^[^\s@]+@[^\s@]+\.[^\s@]+$)/.test(email);
+  const validPassword = password.length >= 8;
+  const canSubmit = validEmail && validPassword && !loading;
+
+  // 📧 Email + Password Sign-in Handler
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setError("");
+    if (!canSubmit) {
+      setError("Please enter a valid email and password (min 8 chars).");
+      return;
+    }
 
-    // Simulate sign-in delay (replace with real auth later)
-    setTimeout(() => {
-      console.log("Signed in with:", email);
-      alert(`Welcome back, ${email}!`);
-      navigate("/"); // redirect to home page after login
+    setLoading(true);
+    try {
+      const data = await login({ email: email.trim(), password });
+      // expected response: { token, user }
+      if (data?.token) {
+        if (auth?.setAuth) {
+          auth.setAuth({ token: data.token, user: data.user || null });
+        } else {
+          localStorage.setItem("token", data.token);
+          if (data.user) localStorage.setItem("user", JSON.stringify(data.user));
+        }
+      }
+      navigate("/");
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(err?.message || "Login failed — check credentials.");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   // 🔹 Google Sign-in (placeholder)
   const handleGoogleSignIn = () => {
     setLoading(true);
-    alert("Redirecting to Google sign-in...");
+    alert("Redirecting to Google sign-in (not implemented).");
     setTimeout(() => {
-      navigate("/");
       setLoading(false);
-    }, 1500);
+      // If you implement OAuth, handle redirect callback to set auth
+    }, 1200);
   };
 
   // 🔹 Facebook Sign-in (placeholder)
   const handleFacebookSignIn = () => {
     setLoading(true);
-    alert("Redirecting to Facebook sign-in...");
+    alert("Redirecting to Facebook sign-in (not implemented).");
     setTimeout(() => {
-      navigate("/");
       setLoading(false);
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -57,9 +82,7 @@ export default function SignIn() {
       {/* 🔹 Sign In Card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-10 text-center">
         <h2 className="text-xl font-semibold mb-1">Sign in to StudyStudio</h2>
-        <p className="text-gray-500 text-sm mb-6">
-          Welcome back! Please sign in to continue
-        </p>
+        <p className="text-gray-500 text-sm mb-6">Welcome back! Please sign in to continue</p>
 
         {/* 🌐 Social Buttons */}
         <div className="flex gap-3 mb-4">
@@ -88,23 +111,39 @@ export default function SignIn() {
           <hr className="flex-1 border-gray-300" />
         </div>
 
-        {/* ✉️ Email Login Form */}
+        {/* ✉️ Email + Password Login Form */}
         <form onSubmit={handleSubmit} className="text-left mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email address
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Email address</label>
           <input
             type="email"
             placeholder="Enter your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black mb-3"
+            required
+            autoComplete="email"
+          />
+
+          <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
             required
+            autoComplete="current-password"
           />
+
+          {error && (
+            <div role="alert" aria-live="polite" className="text-sm text-red-600 mt-3">
+              {error}
+            </div>
+          )}
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={!canSubmit}
             className="w-full bg-gray-700 text-white rounded-lg py-2 font-medium mt-4 hover:bg-black transition disabled:opacity-60"
           >
             {loading ? "Processing..." : "Continue →"}
@@ -114,10 +153,7 @@ export default function SignIn() {
         {/* 🔗 Sign up link */}
         <p className="text-gray-500 text-sm mt-6">
           Don’t have an account?{" "}
-          <span
-            onClick={() => navigate("/signup")}
-            className="text-black font-medium hover:underline cursor-pointer"
-          >
+          <span onClick={() => navigate("/signup")} className="text-black font-medium hover:underline cursor-pointer">
             Sign up
           </span>
         </p>
@@ -129,15 +165,7 @@ export default function SignIn() {
 /* ---------- 🏠 Home Icon ---------- */
 function HomeIcon({ className = "" }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
     </svg>
   );

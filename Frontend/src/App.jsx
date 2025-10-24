@@ -1,6 +1,12 @@
 // src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+// 🧠 Context & Route Protection
+import { AuthProvider } from "./AuthProvider";
+import ProtectedRoute from "./ProtectedRoute";
+
+// 🏠 Pages
 import Home from "./Home/Home";
 import Documentation from "./Pages/Documentation";
 import Intro from "./Pages/Intro";
@@ -25,40 +31,49 @@ import LearnMore from "./Pages/LearnMore";
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
 
-        {/* 🧠 Learn More dynamic page */}
-        <Route path="/learn-more" element={<LearnMore />} />
-        <Route path="/learn-more/:topic" element={<LearnMore />} />
+          <Route path="/learn-more" element={<LearnMore />} />
+          <Route path="/learn-more/:topic" element={<LearnMore />} />
 
+          {/* Protected Documentation Section */}
+          <Route
+            path="/documentation/*"
+            element={
+              <ProtectedRoute>
+                <Documentation />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Intro />} />
+            <Route path="how-it-works" element={<HowItWorks />} />
+            <Route path="buying-guide" element={<BuyingGuide />} />
+            <Route path="local" element={<LocalEnvironment />} />
+            <Route path="production" element={<ProductionEnvironment />} />
+            <Route path="getting-started" element={<GetStarted />} />
+            <Route path="environment-variables" element={<EnvironmentVariables />} />
+            <Route path="gemini" element={<Gemini />} />
+            <Route path="authentication" element={<Authentication />} />
+            <Route path="payment-gateways" element={<PaymentGateways />} />
+            <Route path="database-orm" element={<DatabaseORM />} />
+            <Route path="storage" element={<Storage />} />
+            <Route path="database" element={<Database />} />
+            <Route path="starting-server" element={<StartingServer />} />
+            <Route path="stopping-server" element={<StoppingServer />} />
+            <Route path="custom" element={<CustomServer />} />
+          </Route>
 
-        {/* Documentation layout route with nested pages */}
-        <Route path="/documentation" element={<Documentation />}>
-          <Route index element={<Intro />} />
-          <Route path="how-it-works" element={<HowItWorks />} />
-          <Route path="buying-guide" element={<BuyingGuide />} />
-          <Route path="local" element={<LocalEnvironment />} />
-          <Route path="production" element={<ProductionEnvironment />} />
-          <Route path="getting-started" element={<GetStarted />} />
-          <Route path="environment-variables" element={<EnvironmentVariables />} />
-          <Route path="gemini" element={<Gemini />} />
-          <Route path="authentication" element={<Authentication />} />
-          <Route path="payment-gateways" element={<PaymentGateways />} />
-          <Route path="database-orm" element={<DatabaseORM />} />
-          <Route path="storage" element={<Storage />} />
-          <Route path="database" element={<Database />} />
-          <Route path="starting-server" element={<StartingServer />} />
-          <Route path="stopping-server" element={<StoppingServer />} />
-          <Route path="custom" element={<CustomServer />} />
-        </Route>
-
-        {/* optional: redirect unknown paths */}
-        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-      </Routes>
-    </Router>
+          {/* Optional Redirect for unknown paths */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
+

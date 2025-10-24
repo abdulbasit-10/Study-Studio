@@ -1,13 +1,17 @@
 // src/SignUp.jsx
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { signup } from "./Api/Auth";
+import { AuthContext } from "./AuthProvider";
 
 export default function SignupCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
 
   const validEmail = /(^[^\s@]+@[^\s@]+\.[^\s@]+$)/.test(email);
   const validPassword = password.length >= 8;
@@ -15,15 +19,24 @@ export default function SignupCard() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    setError("");
     if (!valid) return;
     setLoading(true);
     try {
-      await new Promise((r) => setTimeout(r, 800));
-      alert("Signed up successfully! Redirecting to home...");
-      navigate("/"); // 👈 Go to home after signup
+      const data = await signup({ email: email.trim(), password });
+      // expected response: { token, user }
+      if (data?.token) {
+        if (auth?.setAuth) {
+          auth.setAuth({ token: data.token, user: data.user || null });
+        } else {
+          localStorage.setItem("token", data.token);
+          if (data.user) localStorage.setItem("user", JSON.stringify(data.user));
+        }
+      }
+      navigate("/");
     } catch (err) {
       console.error("Signup failed:", err);
-      alert("Signup failed. Please try again.");
+      setError(err?.message || "Signup failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -146,6 +159,13 @@ export default function SignupCard() {
                 )}
               </div>
 
+              {/* server / network error */}
+              {error && (
+                <div role="alert" aria-live="polite" className="mt-1 text-sm text-red-600">
+                  {error}
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={!valid || loading}
@@ -238,12 +258,12 @@ function EyeIcon({ open, className = "" }) {
       </svg>
     );
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-      <path d="M3 3l18 18" />
-      <path d="M10.6 6.1A9.9 9.9 0 0 1 12 6c5.4 0 9 6 9 6a17.4 17.4 0 0 1-4 4.7" />
-      <path d="M6.4 8.3A17.1 17.1 0 0 0 3 12s3.6 6 9 6c.8 0 1.6-.1 2.3-.3" />
-    </svg>
-  );
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+        <path d="M3 3l18 18" />
+        <path d="M10.6 6.1A9.9 9.9 0 0 1 12 6c5.4 0 9 6 9 6a17.4 17.4 0 0 1-4 4.7" />
+        <path d="M6.4 8.3A17.1 17.1 0 0 0 3 12s3.6 6 9 6c.8 0 1.6-.1 2.3-.3" />
+      </svg>
+    );
 }
 
 function ArrowRight({ className = "" }) {
